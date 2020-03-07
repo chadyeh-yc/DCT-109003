@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'tables', component: TablesComponent },
   { path: 'charts', component: ChartsComponent },
-  { path: 'charts/:type', component: ChartsComponent },
   {
     path: 'utilities',
     children: [
