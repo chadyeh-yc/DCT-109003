@@ -11,12 +11,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'tables', component: TablesComponent },
   { path: 'charts', component: ChartsComponent },
-  {
-    path: 'utilities',
-    children: [
-      { path: 'colors', component: ColorsComponent }
-    ]
-  },
+  { path: 'utilities', loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule) },
   { path: '**', component: NotFoundComponent }
 ];
 
