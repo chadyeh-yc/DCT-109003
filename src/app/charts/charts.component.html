@@ -1,11 +1,27 @@
 <div class="container-fluid">
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Charts {{type}}
+  <h1 class="h3 mb-2 text-gray-800">{{title}} {{type}}
+
+    <button [routerLink]="['/charts', type+1]"
+            [queryParams]="
+                {
+                  type: type+1
+                }
+            ">Path: +1</button>
+
+    <button [routerLink]="['/charts']"
+            [queryParams]="
+                {
+                  type: type+1
+                }
+            ">Query: +1</button>
+
     <button (click)="plusOne()">+1</button>
+
   </h1>
   <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below
     have been customized - for further customization options, please visit the <a target="_blank"
-      href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
+       href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
   <!-- Content Row -->
   <div class="row">
     <div class="col-xl-8 col-lg-7">
