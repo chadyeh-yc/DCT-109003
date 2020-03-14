@@ -13,13 +13,27 @@
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
                 <pre>{{ data | json }}</pre>
-                <form class="user">
+                <pre>
+ form.value     = {{form.value | json}}
+ form.pristine  = {{form.pristine}}
+ form.dirty     = {{form.dirty}}
+ form.touched   = {{form.touched}}
+ form.untouched = {{form.untouched}}
+ form.valid     = {{form.valid}}
+ form.invalid   = {{form.invalid}}
+ form.errors    = {{form.errors | json}}
+ form.status    = {{form.status}}
+ form.enabled   = {{form.enabled}}
+ form.disabled  = {{form.disabled}}
+ form.submitted = {{form.submitted}}
+                </pre>
+                <form class="user" #form="ngForm">
                   <div class="form-group">
                     <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
                       [(ngModel)]="data.email" #tEmail="ngModel" required email aria-describedby="emailHelp"
-                      placeholder="Enter Email Address..." [class.is-invalid]="tEmail.invalid" disabled>
-                    <div *ngIf="tEmail.errors?.email">請輸入合法的 E-mail 地址</div>
-                    <div *ngIf="tEmail.errors?.required">請輸入 E-mail 地址</div>
+                      placeholder="Enter Email Address..." [class.is-invalid]="form.submitted && tEmail.invalid">
+                    <div *ngIf="form.submitted && tEmail.errors?.email">請輸入合法的 E-mail 地址</div>
+                    <div *ngIf="form.submitted && tEmail.errors?.required">請輸入 E-mail 地址</div>
                     <pre>
  tEmail.value     = {{tEmail.value}}
  tEmail.pristine  = {{tEmail.pristine}}
@@ -36,7 +50,10 @@
                   </div>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                      name="password" [(ngModel)]="data.password" placeholder="Password">
+                      name="password" [(ngModel)]="data.password" placeholder="Password" #tPassword="ngModel" required
+                      minlength="6" [class.is-invalid]="isFieldValid(tPassword)">
+                    <div *ngIf="form.submitted && tPassword.errors?.minlength">請輸入6馬以上的密碼</div>
+                    <div *ngIf="form.submitted && tPassword.errors?.required">請輸入密碼</div>
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox small">
@@ -45,7 +62,7 @@
                       <label class="custom-control-label" for="customCheck">Remember Me</label>
                     </div>
                   </div>
-                  <a href="index.html" class="btn btn-primary btn-user btn-block"> Login </a>
+                  <button class="btn btn-primary btn-user btn-block"> Login </button>
                   <hr>
                   <a href="index.html" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-google fa-fw"></i> Login with Google </a>
