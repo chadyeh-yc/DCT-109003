@@ -10,6 +10,7 @@ import { ColorsComponent } from './utilities/colors/colors.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { Login2Component } from './login2/login2.component';
 
 const routes: Routes = [
   {
@@ -18,15 +19,20 @@ const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'tables', component: TablesComponent,
-        canActivate: [AuthGuard] },
+      {
+        path: 'tables', component: TablesComponent,
+        canActivate: [AuthGuard]
+      },
       { path: 'charts', component: ChartsComponent, data: { title: '圖表' } },
       { path: 'charts/:type', component: ChartsComponent, data: { title: '圖表' } },
-      { path: 'utilities',
-        loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule) },
+      {
+        path: 'utilities',
+        loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule)
+      },
     ]
   },
   { path: 'login', component: LoginComponent },
+  { path: 'login2', component: Login2Component },
   { path: '**', component: NotFoundComponent }
 ];
 
