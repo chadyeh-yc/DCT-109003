@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-login2',
   templateUrl: './login2.component.html',
   styleUrls: ['./login2.component.css']
 })
-export class Login2Component implements OnInit {
-
+export class Login2Component implements OnInit, OnDestroy {
+  data: any = {};
+  origBodyClass = '';
   constructor() { }
 
   ngOnInit(): void {
@@ -17,5 +18,4 @@ export class Login2Component implements OnInit {
   ngOnDestroy(): void {
     document.body.className = this.origBodyClass;
   }
-
 }
